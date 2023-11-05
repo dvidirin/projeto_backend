@@ -1,6 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    jsonify,
+)
 import dados
 from dados import personagens
+import dados_api
+from dados_api import personagens
 import sqlite3
 
 app = Flask(__name__)
@@ -30,7 +39,7 @@ def listar_inimigos():
 
 
 # Abrir um inimigo em específico (carregando seus dados) no template editar_inimigo.html
-@app.route("/enemy/<int:id>", methods=["GET"])
+@app.route("/inimigo/<int:id>", methods=["GET"])
 def exibir_inimigo(id):
     id, nome, tipo, poder, vida, imagem = dados.retornar_inimigo(id)
 
@@ -47,7 +56,7 @@ def exibir_inimigo(id):
 
 # NOVO com BD
 # usar essa rota para ATUALIZAR, EXCLUIR e CRIAR um novo inimigo.
-@app.route("/enemy/<int:id>", methods=["GET", "POST"])
+@app.route("/inimigo/<int:id>", methods=["GET", "POST"])
 def editar_inimigo(id):
     if request.method == "POST":
         if "excluir" in request.form:
@@ -83,6 +92,56 @@ def editar_inimigo(id):
             vida=vida,
             imagem=imagem,
         )
+    
+# Rota para retornar todos os inimigos
+@app.route("/api/inimigos", methods=["GET"])
+def get_inimigos():
+    lista_inimigos = dados_api.retornar_inimigos()
+    return jsonify(lista_inimigos)
+
+
+# Rota para retornar um único inimigo
+@app.route("/api/inimigo/<int:id>", methods=["GET"])
+def get_inimigo(id):
+    inimigo = dados_api.retornar_inimigo(id)
+    if inimigo:
+        return jsonify(inimigo)
+    else:
+        return jsonify({"message": "Inimigo não encontrado!"}), 404
+
+
+# Rota para cadastrar um novo inimigo
+@app.route("/api/inimigo", methods=["POST"])
+def post_inimigo():
+    inimigo = request.json
+    id_inimigo = dados_api.criar_inimigo(**inimigo)
+    inimigo["id"] = id_inimigo
+    return jsonify(inimigo), 201
+
+
+# Rota para alterar um inimigo
+@app.route("/api/inimigo/<int:id>", methods=["PUT"])
+def put_inimigo(id):
+    inimigo = dados_api.retornar_inimigo(id)
+    if inimigo:
+        dados_atualizados = request.json
+        dados_atualizados["id"] = id
+        dados_api.atualizar_inimigo(**dados_atualizados)
+        return jsonify(dados_atualizados)
+    else:
+        return jsonify({"message": "Inimigo não encontrado!"}), 404
+
+
+# Rota para deletar um inimigo
+@app.route("/api/inimigo/<int:id>", methods=["DELETE"])
+def delete_inimigo(id):
+    inimigo = dados_api.retornar_inimigo(id)
+    if inimigo:
+        dados_api.remover_inimigo(id)
+        return jsonify({"message": "Inimigo removido com sucesso."})
+    else:
+        return jsonify({"message": "Inimigo não encontrado!"}), 404
+
 
 
 # ANTIGO com DICIONARIO

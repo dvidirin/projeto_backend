@@ -31,6 +31,12 @@ Uma linguagem de marcação de hipertexto para apresentar e estruturar o conteú
 :heavy_check_mark: <b>CSS3</b><br>
 Uma linguagem usada para estilizar elementos escritos em uma linguagem de marcação como HTML.<br>
 
+:heavy_check_mark: <b>SQLite</b><br>
+Banco de dados utilizado no projeto.<br>
+
+:heavy_check_mark: <b>Insomnia ou Postman</b><br>
+Plataforma para testar API.<br>
+
 ---
 
 ## :handshake: **EQUIPE:**
@@ -41,7 +47,6 @@ Uma linguagem usada para estilizar elementos escritos em uma linguagem de marca�
 | ---------------- | ----- | --------- | --------- | --------- |
 | <img width="100" alt="Foto de Perfil do GitHub do Cesar" src="https://avatars.githubusercontent.com/u/100310865"> | `Cesar Augusto da Costa`<br><br>cesar.costa.cac.1993@gmail.com | Campinas - SP | <a href="https://github.com/cesar-augusto-costa"> <img height="30" alt="GitHub do Cesar" src="https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white"></a> | [![Github Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cesar-augusto-costa/) |
 | <img width="100" alt="Foto de Perfil do GitHub do Daniel" src="https://avatars.githubusercontent.com/u/76978773"> | `Daniel Vidiri Neto`<br><br>dvn.face@gmail.com | Araras - SP | <a href="https://github.com/dvidirin"> <img height="30" alt="GitHub do Daniel" src="https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white"></a> | [![Github Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dvneto/) |
-| <img width="100" alt="Foto de Perfil do GitHub do Dyego" src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg"> | `Dyego Magno`<br><br>dyegowolf@gmail.com | Campinas - SP | <a href=""> <img height="30" alt="GitHub do Dyego" src="https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white"></a> | [![Github Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]() |
 | <img width="100" alt="Foto de Perfil do GitHub do João" src="https://media.licdn.com/dms/image/D4D03AQGsB-Yr23DWqQ/profile-displayphoto-shrink_800_800/0/1693776475761?e=1704326400&v=beta&t=Y0DJF5OUgrjpyQlFWzHQxFT_dbThRH84Tl7jRJCi2_w"> | `João Sales`<br><br>joaomarcos0107@yahoo.com.br | Nova Iguaçu - RJ | <a href=""> <img height="30" alt="GitHub do João" src="https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white"></a> | [![Github Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo%C3%A3o-sales-b183a819b/) |
 | <img width="100" alt="Foto de Perfil do GitHub do Moisés" src="https://avatars.githubusercontent.com/u/133283977"> | `Moisés Gomes Seleme Hilel`<br><br>moises.hilel@gmail.com | Guarapari - ES | <a href="https://github.com/moiseshilel"> <img height="30" alt="GitHub do Moisés" src="https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white"></a> | [![Github Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mhilel-developer/) |
 | <img width="100" alt="Foto de Perfil do GitHub da Morena" src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg"> | `Morena Flowers`<br><br>msgparamona@gmail.com | Campinas - SP | <a href=""> <img height="30" alt="GitHub da Morena" src="https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white"></a> | [![Github Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)]() |
@@ -127,11 +132,17 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 
-### 5-Para executar o projeto no VSCode
+### 5-Para executar o projeto no terminal do VSCode
 
-- Com o arquivo `app.py` aberto.
+- No Linux
+```
+python3 app.py
+```
 
-- Clique no ícone de play "Run Python file", no canto superior direito.
+- No Windows
+```
+python app.py
+```
 
 - O terminal começará a exibir um log.
 
@@ -145,12 +156,201 @@ pip freeze > requirements.txt
 
 ---
 
+# Documentação da API
+
+## Endpoints
+
+<details>
+  <summary>Listar Inimigos</summary>
+  
+  <br>
+  
+  Método: `GET`
+  
+  Endpoint: `/api/inimigos`
+  
+  Retorna a lista de todos os inimigos.
+
+  ### Exemplo de Requisição
+
+  ```http
+  GET /api/inimigos
+  ```
+
+  ### Exemplo de Resposta (Sucesso - Status Code: 200 OK)
+  ```
+  [
+  	{
+  		"id": 1,
+  		"imagem": "zumbi_image.jpg",
+  		"nome": "Zumbilóide",
+  		"poder": 5,
+  		"tipo": "Zumbi",
+  		"vida": 20
+  	},
+  	{
+  		"id": 2,
+  		"imagem": "esqueleto_image.jpg",
+  		"nome": "he-man",
+  		"poder": 8,
+  		"tipo": "Esqueleto",
+  		"vida": 15
+  	}
+  ]
+  ```
+  ### Exemplo de Resposta (Erro - Status Code: 404 Not Found)
+  ```
+  {
+    "message": "Inimigo não encontrado!"
+  }
+  ```
+</details>
+
+<details>
+  <summary>Criar um Novo Inimigo</summary>
+  
+  <br>
+  
+  Método: `POST`
+  
+  Endpoint: `/api/inimigo`
+  
+  Cria um novo inimigo com os dados fornecidos.
+
+  ### Corpo da Requisição
+
+  ```
+  {
+		"imagem": "zumbi_image.jpg",
+		"nome": "Zumbilóide",
+		"poder": 5,
+		"tipo": "Zumbi",
+		"vida": 20
+  }
+  ```
+
+  ### Exemplo de Requisição
+
+  ```http
+  POST /api/inimigo
+  ```
+
+  ### Exemplo de Resposta (Sucesso - Status Code: 201 Created)
+  ```
+  {
+  	"id": 8,
+  	"imagem": "zumbi_image.jpg",
+  	"nome": "Zumbilóide",
+  	"poder": 5,
+  	"tipo": "Zumbi",
+  	"vida": 20
+  }
+  ```
+
+  ### Exemplo de Resposta (Erro - Status Code: 400 Bad Request)
+  ```
+  {
+    "message": "Requisição inválida."
+  }
+  ```
+</details>
+
+<details>
+  <summary>Atualizar um Inimigo</summary>
+  
+  <br>
+  
+  Método: `PUT`
+  
+  Endpoint: `/api/inimigo/{id}`
+  
+  Atualiza os dados de um inimigo com o ID especificado.
+
+  ### Parâmetros
+
+  `id` (int): O ID do inimigo a ser atualizado.
+  
+  ### Corpo da Requisição
+
+  ```
+  {
+		"imagem": "zumbi_image.jpg",
+		"nome": "Zumbi",
+		"poder": 5,
+		"tipo": "Zumbi",
+		"vida": 20
+  }
+  ```
+
+  ### Exemplo de Requisição
+
+  ```http
+  PUT /api/inimigo/8
+  ```
+
+  ### Exemplo de Resposta (Sucesso - Status Code: 200 OK)
+  ```
+  {
+		"imagem": "zumbi_image.jpg",
+		"nome": "Zumbi",
+		"poder": 5,
+		"tipo": "Zumbi",
+		"vida": 20
+  }
+  ```
+
+  ### Exemplo de Resposta (Erro - Status Code: 404 Not Found)
+  ```
+  {
+    "message": "Inimigo não encontrado!"
+  }
+  ```
+</details>
+
+<details>
+  <summary>Deletar um Inimigo</summary>
+  
+  <br>
+  
+  Método: `DELETE`
+  
+  Endpoint: `/api/inimigo/{id}`
+  
+  Remove um inimigo com o ID especificado.
+
+  ### Parâmetros
+
+  `id` (int): O ID do inimigo a ser removido.
+
+  ### Exemplo de Requisição
+
+  ```http
+  DELETE /api/inimigo/8
+  ```
+
+  ### Exemplo de Resposta (Sucesso - Status Code: 200 OK)
+  ```
+  {
+	  "message": "Inimigo removido com sucesso."
+  }
+  ```
+
+  ### Exemplo de Resposta (Erro - Status Code: 404 Not Found)
+  ```
+  {
+	  "message": "Inimigo não encontrado!"
+  }
+  ```
+</details>
+
+---
+
 ## Agradecimentos
 
 * Escola Korú;
 * iFood;
 * Potência Tech;
-* Professor [Gabriel];
+* Professores;
 * À cada membro do projeto pela dedicação.
 
 ---
