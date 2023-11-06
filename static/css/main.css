@@ -8,9 +8,62 @@ body {
 
 /* Estilo do cabeçalho */
 header {
+  background-color: #EAA643;
+  color: #FFF;
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  margin-right: -48em;
+}
+
+.container nav {
+  width: 350px;
+  margin-right: 1em;
+}
+
+.container ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.container a {
+  
+  font-family: 'Lalezar', cursive;
+  color: #FFF;
+  font-size: 23px;
+  text-decoration: none;
+}
+
+.container-fluid nav{
   background-color: #B4A185;
   color: #FFF;
   text-align: center;
+  padding: 20px;
+}
+
+.personagem{
+  background-color: #B4A185;
+  color: #FFF;
+  text-align: center;
+  padding: 20px;
+}
+
+.aventuras_arqueologicas {
+  background-color: #F4B21D;
+  color: #000;
+  text-align: center;
+  padding: 20px;
+}
+
+.lista_inimigos{
+  background-color: #B4A185;
+  color: #FFF;
   padding: 20px;
 }
 

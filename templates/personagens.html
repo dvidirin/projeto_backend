@@ -11,10 +11,21 @@
 </head>
 
 <body>
-  {% for id, personagem in personagens.items() %}
   <header>
-    <h1>{{personagem['nome']}}</h1>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="./personagens">Personagens</a></li>
+          <li><a href="./inimigos">Inimigos</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
+  {% for id, personagem in personagens.items() %}
+  <section class="personagem">
+    <h1>{{personagem['nome']}}</h1>
+  </section>
   <main>
     <h2>{{personagem['ocupacao']}}</h2>
     <img src="{{personagem['imagem']}}" alt="{{personagem['nome']}}">

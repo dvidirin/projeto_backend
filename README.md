@@ -158,6 +158,15 @@ python app.py
 
 # Documentação da API
 
+Nossa API utiliza o conceito CRUD para operações de banco de dados. 
+
+CRUD é uma sigla que representa as quatro operações básicas em sistemas de gerenciamento de dados:
+
+- **C**reate (Criar): Criação de novos registros ou recursos no sistema.
+- **R**ead (Ler): Recuperação de informações e leitura de registros existentes.
+- **U**pdate (Atualizar): Modificação de registros ou recursos já existentes.
+- **D**elete (Excluir): Remoção de registros ou recursos do sistema.
+
 ## Endpoints
 
 <details>
@@ -202,6 +211,46 @@ python app.py
   ```
   {
     "message": "Inimigo não encontrado!"
+  }
+  ```
+</details>
+
+<details>
+  <summary>Mostrar um Inimigo</summary>
+  
+  <br>
+  
+  Método: `GET`
+  
+  Endpoint: `/api/inimigo/{id}`
+  
+  Retorna um inimigo.
+
+  ### Parâmetros
+
+  `id` (int): O ID do inimigo a ser mostrado.
+
+  ### Exemplo de Requisição
+
+  ```http
+  GET /api/inimigo/1
+  ```
+
+  ### Exemplo de Resposta (Sucesso - Status Code: 200 OK)
+  ```
+  {
+    "id": 1,
+    "imagem": "zumbi_image.jpg",
+    "nome": "Zumbilóide",
+    "poder": 5,
+    "tipo": "Zumbi",
+    "vida": 20
+  }
+  ```
+  ### Exemplo de Resposta (Erro - Status Code: 404 Not Found)
+  ```
+  {
+	  "message": "Inimigo não encontrado!"
   }
   ```
 </details>

@@ -2,63 +2,66 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
   <title>Editar Inimigo</title>
 </head>
 
 <body>
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('listar_inimigos') }}">Inimigos</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-    </div>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('listar_inimigos') }}">Inimigos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </div>
+  <section class="editar_inimigo">
     <h1>Editar Inimigo</h1>
     <form method="POST" enctype="multipart/form-data" action="" class="needs-validation" data-toggle="validator">
       <div class="form-group">
         <label for="id">ID:</label>
-        <input type="number" class="form-control" id="id" name="id" value="{{ id }}" required>
+        <input type="number" class="form-control" id="id" name="id" value="{{ id }}" required />
         <div class="invalid-feedback">Campo obrigatório.</div>
       </div>
       <div class="form-group">
         <label for="nome">Nome:</label>
-        <input type="text" class="form-control" id="nome" name="nome" value="{{ nome }}" required>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ nome }}" required />
         <div class="invalid-feedback">Campo obrigatório.</div>
       </div>
       <div class="form-group">
         <label for="tipo">Tipo:</label>
-        <input type="text" class="form-control" id="tipo" name="tipo" value="{{ tipo }}" required>
+        <input type="text" class="form-control" id="tipo" name="tipo" value="{{ tipo }}" required />
         <div class="invalid-feedback">Campo obrigatório.</div>
       </div>
       <div class="form-group">
         <label for="poder">Poder:</label>
-        <input type="number" class="form-control" id="poder" name="poder" value="{{ poder }}" required>
+        <input type="number" class="form-control" id="poder" name="poder" value="{{ poder }}" required />
         <div class="invalid-feedback">Campo obrigatório.</div>
       </div>
       <div class="form-group">
         <label for="vida">Vida:</label>
-        <input type="number" class="form-control" id="vida" name="vida" value="{{ vida }}" required>
+        <input type="number" class="form-control" id="vida" name="vida" value="{{ vida }}" required />
         <div class="invalid-feedback">Campo obrigatório.</div>
       </div>
       <div class="form-group">
         <label for="imagem">Imagem:</label>
-        <input type="text" class="form-control" id="imagem" name="imagem" value="{{ imagem }}">
+        <input type="text" class="form-control" id="imagem" name="imagem" value="{{ imagem }}" />
         {% if imagem %}
-        <img src="{{ url_for('static', filename='images/enemies/' + imagem) }}" style="max-width: 200px; max-height: 200px;">
+        <img src="{{ url_for('static', filename='images/enemies/' + imagem) }}"
+          style="max-width: 200px; max-height: 200px" />
         {% endif %}
       </div>
-      <input type="submit" class="btn btn-primary" name="salvar" value="salvar">
+      <input type="submit" class="btn btn-primary" name="salvar" value="salvar" />
       <!--<a href="{{ url_for('listar_inimigos') }}" class="btn btn-secondary">Cancelar</a>-->
       <a href="#" class="btn btn-secondary">Cancelar</a>
       <!--<input type="reset" class="btn btn-secondary" name="Cancelar" value="Cancelar">-->
-      <input type="submit" class="btn btn-danger" name="excluir" value="excluir">
+      <input type="submit" class="btn btn-danger" name="excluir" value="excluir" />
     </form>
+  </section>
 </body>
 
 </html>
