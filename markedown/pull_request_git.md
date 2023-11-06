@@ -2,7 +2,7 @@
 
 * ### Siga as etapas abaixo:
 
-1. Faça suas alterações seguindo o [Guia para dar Fork e fazer suas alterações](markedown/fork_utilizacao_git.md).
+1. Faça suas alterações seguindo o [Guia para dar Fork e fazer suas alterações](fork_utilizacao_git.md).
 
 2. Crie uma nova branch com a sua contribuição.
 ```
